@@ -10,3 +10,4 @@ C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.In
 C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\refint\AI-RPG.Infrastructure.dll
 C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.Infrastructure.pdb
 C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\ref\AI-RPG.Infrastructure.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.Infrastructure.sourcelink.json
