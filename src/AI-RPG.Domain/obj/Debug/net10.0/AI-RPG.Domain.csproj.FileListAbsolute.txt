@@ -1,0 +1,11 @@
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\bin\Debug\net10.0\AI-RPG.Domain.deps.json
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\bin\Debug\net10.0\AI-RPG.Domain.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\bin\Debug\net10.0\AI-RPG.Domain.pdb
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\obj\Debug\net10.0\AI-RPG.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\obj\Debug\net10.0\AI-RPG.Domain.AssemblyInfoInputs.cache
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\obj\Debug\net10.0\AI-RPG.Domain.AssemblyInfo.cs
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\obj\Debug\net10.0\AI-RPG.Domain.csproj.CoreCompileInputs.cache
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\obj\Debug\net10.0\AI-RPG.Domain.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\obj\Debug\net10.0\refint\AI-RPG.Domain.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\obj\Debug\net10.0\AI-RPG.Domain.pdb
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Domain\obj\Debug\net10.0\ref\AI-RPG.Domain.dll

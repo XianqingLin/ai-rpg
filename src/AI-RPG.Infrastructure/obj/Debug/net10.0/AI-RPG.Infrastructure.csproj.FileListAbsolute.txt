@@ -1,0 +1,12 @@
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\bin\Debug\net10.0\AI-RPG.Infrastructure.deps.json
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\bin\Debug\net10.0\AI-RPG.Infrastructure.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\bin\Debug\net10.0\AI-RPG.Infrastructure.pdb
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.Infrastructure.csproj.AssemblyReference.cache
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.Infrastructure.AssemblyInfoInputs.cache
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.Infrastructure.AssemblyInfo.cs
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.Infrastructure.csproj.CoreCompileInputs.cache
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.Infrastructure.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\refint\AI-RPG.Infrastructure.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\AI-RPG.Infrastructure.pdb
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Infrastructure\obj\Debug\net10.0\ref\AI-RPG.Infrastructure.dll

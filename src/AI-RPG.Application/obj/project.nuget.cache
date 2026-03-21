@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "TqMxEJ37aGM=",
+  "success": true,
+  "projectFilePath": "c:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Application\\AI-RPG.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\29437\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.2\\microsoft.extensions.dependencyinjection.abstractions.9.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
