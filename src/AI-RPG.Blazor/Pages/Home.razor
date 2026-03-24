@@ -1,0 +1,76 @@
+@page "/"
+
+<PageTitle>AI-RPG - AI 跑团游戏</PageTitle>
+
+<MudText Typo="Typo.h3" Class="mb-4">欢迎来到 AI-RPG</MudText>
+
+<MudText Typo="Typo.body1" Class="mb-4">
+    AI-RPG 是一个基于 AI 的跑团游戏平台。在这里，你可以：
+</MudText>
+
+<MudGrid Class="mb-4">
+    <MudItem xs="12" md="4">
+        <MudCard Elevation="2" Class="pa-4">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h6">创建会话</MudText>
+                </CardHeaderContent>
+                <CardHeaderActions>
+                    <MudIconButton Icon="@Icons.Material.Filled.Add" Color="Color.Primary" />
+                </CardHeaderActions>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText>创建一个新的跑团会话，设定游戏世界观和场景。</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Text" Color="Color.Primary" Href="sessions/create">立即创建</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <MudCard Elevation="2" Class="pa-4">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h6">加入会话</MudText>
+                </CardHeaderContent>
+                <CardHeaderActions>
+                    <MudIconButton Icon="@Icons.Material.Filled.Login" Color="Color.Secondary" />
+                </CardHeaderActions>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText>加入已有的会话，与其他玩家一起冒险。</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Text" Color="Color.Secondary" Href="sessions">查看会话</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <MudCard Elevation="2" Class="pa-4">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h6">AI 主持人</MudText>
+                </CardHeaderContent>
+                <CardHeaderActions>
+                    <MudIconButton Icon="@Icons.Material.Filled.SmartToy" Color="Color.Info" />
+                </CardHeaderActions>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText>由 Kimi AI 担任主持人，为你带来沉浸式体验。</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Text" Color="Color.Info">了解更多</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>
+
+<MudDivider Class="my-4" />
+
+<MudText Typo="Typo.h5" Class="mb-2">快速开始</MudText>
+<MudText Typo="Typo.body2">
+    1. 点击"创建会话"设定你的游戏世界<br />
+    2. 添加 NPC 角色丰富你的故事<br />
+    3. 开始会话并与 AI 主持人互动<br />
+    4. 享受你的跑团冒险！
+</MudText>

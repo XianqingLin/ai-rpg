@@ -1,9 +1,11 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AI_RPG.Domain.Repositories;
 using AI_RPG.Infrastructure.Services;
 using AI_RPG.Infrastructure.Implementations.VectorStore;
 using AI_RPG.Infrastructure.Implementations.GraphStore;
 using AI_RPG.Infrastructure.Implementations.Cache;
+using AI_RPG.Infrastructure.Repositories;
 
 namespace AI_RPG.Infrastructure.Extensions;
 
@@ -31,9 +33,22 @@ public static class InfrastructureExtensions
         services.Configure<RedisOptions>(configuration.GetSection("Redis"));
         services.AddSingleton<ICacheService, RedisCacheService>();
 
+        // 注册内存仓储（用于快速验证）
+        services.AddSingleton<ISessionRepository, InMemorySessionRepository>();
+
         // 注意：Embedding服务已迁移到 AI-RPG.AICapabilities 层
         // 请使用 services.AddAICapabilities(configuration) 注册
 
+        return services;
+    }
+
+    /// <summary>
+    /// 添加内存仓储（用于测试和快速验证，无需外部数据库）
+    /// </summary>
+    public static IServiceCollection AddInMemoryRepositories(
+        this IServiceCollection services)
+    {
+        services.AddSingleton<ISessionRepository, InMemorySessionRepository>();
         return services;
     }
 }

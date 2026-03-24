@@ -13,3 +13,8 @@ C:\c-sharp-projects\ai-rpg\src\AI-RPG.Application\obj\Debug\net10.0\AI-RPG.Appli
 C:\c-sharp-projects\ai-rpg\src\AI-RPG.Application\obj\Debug\net10.0\refint\AI-RPG.Application.dll
 C:\c-sharp-projects\ai-rpg\src\AI-RPG.Application\obj\Debug\net10.0\AI-RPG.Application.pdb
 C:\c-sharp-projects\ai-rpg\src\AI-RPG.Application\obj\Debug\net10.0\ref\AI-RPG.Application.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Application\obj\Debug\net10.0\AI-RPG.Application.sourcelink.json
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Application\bin\Debug\net10.0\AI-RPG.AICapabilities.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Application\bin\Debug\net10.0\AI-RPG.Infrastructure.dll
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Application\bin\Debug\net10.0\AI-RPG.AICapabilities.pdb
+C:\c-sharp-projects\ai-rpg\src\AI-RPG.Application\bin\Debug\net10.0\AI-RPG.Infrastructure.pdb

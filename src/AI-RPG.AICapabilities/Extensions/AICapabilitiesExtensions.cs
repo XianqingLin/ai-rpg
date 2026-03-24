@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 namespace AI_RPG.AICapabilities.Extensions;
 
@@ -96,6 +97,73 @@ public static class AICapabilitiesExtensions
             var kernel = kernelFactory(sp);
             var logger = sp.GetRequiredService<Microsoft.Extensions.Logging.ILogger<SemanticKernelClient>>();
             return new SemanticKernelClient(kernel, modelName, logger);
+        });
+
+        return services;
+    }
+
+    /// <summary>
+    /// 注册Kimi LLM客户端作为默认ILLMClient
+    /// </summary>
+    public static IServiceCollection AddKimiClient(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        // 注册Kimi配置
+        services.Configure<KimiOptions>(configuration.GetSection("Kimi"));
+
+        // 注册默认的ILLMClient为Kimi客户端
+        services.AddSingleton<ILLMClient>(sp =>
+        {
+            var options = sp.GetRequiredService<IOptions<KimiOptions>>().Value;
+            var logger = sp.GetRequiredService<Microsoft.Extensions.Logging.ILogger<SemanticKernelClient>>();
+
+            // 创建KernelBuilder并配置OpenAI连接器（Kimi兼容OpenAI API）
+            var kernelBuilder = Kernel.CreateBuilder();
+
+            // 使用OpenAI连接器连接到Kimi API
+            kernelBuilder.AddOpenAIChatCompletion(
+                modelId: options.ModelName,
+                apiKey: options.ApiKey,
+                httpClient: new HttpClient
+                {
+                    BaseAddress = new Uri(options.BaseUrl)
+                });
+
+            var kernel = kernelBuilder.Build();
+
+            return new SemanticKernelClient(kernel, options.ModelName, logger);
+        });
+
+        return services;
+    }
+
+    /// <summary>
+    /// 注册Kimi LLM客户端（手动配置方式）
+    /// </summary>
+    public static IServiceCollection AddKimiClient(
+        this IServiceCollection services,
+        Action<KimiOptions> configureOptions)
+    {
+        services.Configure(configureOptions);
+
+        services.AddSingleton<ILLMClient>(sp =>
+        {
+            var options = sp.GetRequiredService<IOptions<KimiOptions>>().Value;
+            var logger = sp.GetRequiredService<Microsoft.Extensions.Logging.ILogger<SemanticKernelClient>>();
+
+            var kernelBuilder = Kernel.CreateBuilder();
+            kernelBuilder.AddOpenAIChatCompletion(
+                modelId: options.ModelName,
+                apiKey: options.ApiKey,
+                httpClient: new HttpClient
+                {
+                    BaseAddress = new Uri(options.BaseUrl)
+                });
+
+            var kernel = kernelBuilder.Build();
+
+            return new SemanticKernelClient(kernel, options.ModelName, logger);
         });
 
         return services;

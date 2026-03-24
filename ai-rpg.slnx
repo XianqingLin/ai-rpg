@@ -1,5 +1,8 @@
 <Solution>
   <Project Path="src\AI-RPG.Infrastructure\AI-RPG.Infrastructure.csproj" />
+  <Project Path="src\AI-RPG.Blazor\AI-RPG.Blazor.csproj" />
+  <Project Path="src\AI-RPG.WebAPI\AI-RPG.WebAPI.csproj" />
   <Project Path="src\AI-RPG.AICapabilities\AI-RPG.AICapabilities.csproj" />
   <Project Path="src\AI-RPG.Domain\AI-RPG.Domain.csproj" />
+  <Project Path="src\AI-RPG.Application\AI-RPG.Application.csproj" />
 </Solution>

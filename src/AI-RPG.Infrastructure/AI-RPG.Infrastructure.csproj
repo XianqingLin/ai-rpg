@@ -34,4 +34,8 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AI-RPG.Domain\AI-RPG.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

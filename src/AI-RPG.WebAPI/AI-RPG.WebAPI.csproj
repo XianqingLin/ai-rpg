@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>AI_RPG.WebAPI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AI-RPG.Domain\AI-RPG.Domain.csproj" />
+    <ProjectReference Include="..\AI-RPG.Application\AI-RPG.Application.csproj" />
+    <ProjectReference Include="..\AI-RPG.AICapabilities\AI-RPG.AICapabilities.csproj" />
+    <ProjectReference Include="..\AI-RPG.Infrastructure\AI-RPG.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

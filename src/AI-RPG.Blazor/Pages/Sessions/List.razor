@@ -1,0 +1,192 @@
+@page "/sessions"
+@inject SessionService SessionService
+@inject NavigationManager Navigation
+@inject ISnackbar Snackbar
+
+<PageTitle>会话列表 - AI-RPG</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4">我的会话</MudText>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" 
+           StartIcon="@Icons.Material.Filled.Add" 
+           OnClick="NavigateToCreate"
+           Class="mb-4">
+    创建新会话
+</MudButton>
+
+@if (_isLoading)
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-4" />
+}
+else if (_sessions.Count == 0)
+{
+    <MudAlert Severity="Severity.Info" Class="my-4">
+        暂无会话，点击上方按钮创建一个新会话吧！
+    </MudAlert>
+}
+else
+{
+    <MudGrid>
+        @foreach (var session in _sessions)
+        {
+            <MudItem xs="12" md="6" lg="4">
+                <MudCard Elevation="2" Class="h-100">
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h6">@session.Title</MudText>
+                            <MudText Typo="Typo.caption">创建于 @session.CreatedAt.ToString("yyyy-MM-dd HH:mm")</MudText>
+                        </CardHeaderContent>
+                        <CardHeaderActions>
+                            <MudIconButton Icon="@Icons.Material.Filled.ChevronRight" 
+                                          Color="Color.Primary"
+                                          OnClick="() => EnterSession(session.Id)" />
+                        </CardHeaderActions>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudChip T="string" Color="GetStatusColor(session.Status)" Size="Size.Small">
+                            @GetStatusText(session.Status)
+                        </MudChip>
+                        <MudText Typo="Typo.body2" Class="mt-2">
+                            <MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Small" /> 
+                            @session.PlayerCount 玩家
+                            <MudIcon Icon="@Icons.Material.Filled.SmartToy" Size="Size.Small" Class="ml-2" /> 
+                            @session.NPCCount NPC
+                        </MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Text" 
+                                  Color="Color.Primary"
+                                  OnClick="() => EnterSession(session.Id)">
+                            进入会话
+                        </MudButton>
+                        @if (session.Status == "Running")
+                        {
+                            <MudButton Variant="Variant.Text" 
+                                      Color="Color.Warning"
+                                      OnClick="() => PauseSession(session.Id)">
+                                暂停
+                            </MudButton>
+                        }
+                        else if (session.Status == "Paused")
+                        {
+                            <MudButton Variant="Variant.Text" 
+                                      Color="Color.Success"
+                                      OnClick="() => StartSession(session.Id)">
+                                继续
+                            </MudButton>
+                        }
+                        <MudButton Variant="Variant.Text" 
+                                  Color="Color.Error"
+                                  OnClick="() => EndSession(session.Id)">
+                            结束
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
+}
+
+@code {
+    private List<SessionSummaryDto> _sessions = new();
+    private bool _isLoading = true;
+    private string _currentUserId = "user-001"; // 临时硬编码
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadSessionsAsync();
+    }
+
+    private async Task LoadSessionsAsync()
+    {
+        _isLoading = true;
+        try
+        {
+            _sessions = await SessionService.GetUserSessionsAsync(_currentUserId);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"加载会话失败: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+
+    private void EnterSession(string sessionId)
+    {
+        Navigation.NavigateTo($"/sessions/{sessionId}");
+    }
+
+    private void NavigateToCreate()
+    {
+        Navigation.NavigateTo("sessions/create");
+    }
+
+    private async Task StartSession(string sessionId)
+    {
+        var result = await SessionService.StartAsync(sessionId);
+        if (result != null)
+        {
+            Snackbar.Add("会话已开始", Severity.Success);
+            await LoadSessionsAsync();
+        }
+        else
+        {
+            Snackbar.Add("开始会话失败", Severity.Error);
+        }
+    }
+
+    private async Task PauseSession(string sessionId)
+    {
+        var result = await SessionService.PauseAsync(sessionId);
+        if (result != null)
+        {
+            Snackbar.Add("会话已暂停", Severity.Info);
+            await LoadSessionsAsync();
+        }
+        else
+        {
+            Snackbar.Add("暂停会话失败", Severity.Error);
+        }
+    }
+
+    private async Task EndSession(string sessionId)
+    {
+        var result = await SessionService.EndAsync(sessionId);
+        if (result)
+        {
+            Snackbar.Add("会话已结束", Severity.Success);
+            await LoadSessionsAsync();
+        }
+        else
+        {
+            Snackbar.Add("结束会话失败", Severity.Error);
+        }
+    }
+
+    private Color GetStatusColor(string status)
+    {
+        return status switch
+        {
+            "Running" => Color.Success,
+            "Paused" => Color.Warning,
+            "Preparing" => Color.Info,
+            "Ended" => Color.Error,
+            _ => Color.Default
+        };
+    }
+
+    private string GetStatusText(string status)
+    {
+        return status switch
+        {
+            "Running" => "进行中",
+            "Paused" => "已暂停",
+            "Preparing" => "准备中",
+            "Ended" => "已结束",
+            _ => status
+        };
+    }
+}
