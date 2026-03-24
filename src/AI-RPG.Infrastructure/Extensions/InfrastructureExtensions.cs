@@ -4,8 +4,6 @@ using AI_RPG.Infrastructure.Services;
 using AI_RPG.Infrastructure.Implementations.VectorStore;
 using AI_RPG.Infrastructure.Implementations.GraphStore;
 using AI_RPG.Infrastructure.Implementations.Cache;
-using AI_RPG.Infrastructure.Implementations.Embedding;
-using AI_RPG.Infrastructure.Plugins;
 
 namespace AI_RPG.Infrastructure.Extensions;
 
@@ -33,13 +31,8 @@ public static class InfrastructureExtensions
         services.Configure<RedisOptions>(configuration.GetSection("Redis"));
         services.AddSingleton<ICacheService, RedisCacheService>();
 
-        // 注册 Embedding
-        services.Configure<ZhipuEmbeddingOptions>(configuration.GetSection("Zhipu"));
-        services.AddHttpClient<IEmbeddingProvider, ZhipuEmbedding>();
-
-        // 注册基础设施插件
-        services.AddSingleton<VectorSearchPlugin>();
-        services.AddSingleton<MemoryPlugin>();
+        // 注意：Embedding服务已迁移到 AI-RPG.AICapabilities 层
+        // 请使用 services.AddAICapabilities(configuration) 注册
 
         return services;
     }

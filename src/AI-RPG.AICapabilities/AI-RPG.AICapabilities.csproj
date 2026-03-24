@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>AI_RPG.AICapabilities</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Semantic Kernel -->
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.40.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.PromptTemplates.Handlebars" Version="1.40.0" />
+    
+    <!-- Microsoft Extensions -->
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 引用Infrastructure层 -->
+    <ProjectReference Include="..\AI-RPG.Infrastructure\AI-RPG.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

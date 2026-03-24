@@ -1,6 +1,6 @@
 # AI-RPG.Infrastructure
 
-AI-RPG 游戏的基础设施层，提供数据存储、缓存、嵌入等通用技术服务。
+AI-RPG 游戏的基础设施层，提供数据存储、缓存等通用技术服务。
 
 ## 项目结构
 
@@ -10,7 +10,6 @@ AI-RPG.Infrastructure/
 │   ├── IVectorStore.cs           # 向量数据库接口
 │   ├── IGraphStore.cs            # 图数据库接口
 │   ├── ICacheService.cs          # 缓存服务接口
-│   ├── IEmbeddingProvider.cs     # 嵌入服务接口
 │   ├── VectorStoreModels.cs      # 向量相关模型 (VectorPoint, SearchResult)
 │   └── GraphStoreModels.cs       # 图数据库模型 (GraphNode, GraphRelationship, etc.)
 ├── Implementations/               # 服务实现
@@ -23,14 +22,9 @@ AI-RPG.Infrastructure/
 │   │   ├── Neo4jClient.cs
 │   │   ├── Neo4jOptions.cs
 │   │   └── CypherQueryBuilder.cs
-│   ├── Cache/                    # Redis 实现
-│   │   ├── RedisCacheService.cs
-│   │   └── RedisOptions.cs
-│   └── Embedding/                # 智谱 AI 嵌入实现
-│       └── ZhipuEmbedding.cs
-├── Plugins/                       # Semantic Kernel 插件
-│   ├── VectorSearchPlugin.cs     # 向量检索插件
-│   └── MemoryPlugin.cs           # 对话历史管理插件
+│   └── Cache/                    # Redis 实现
+│       ├── RedisCacheService.cs
+│       └── RedisOptions.cs
 └── Extensions/
     └── InfrastructureExtensions.cs # DI 注册扩展
 ```
@@ -112,34 +106,6 @@ if (acquired)
 }
 ```
 
-### 4. 文本嵌入 (IEmbeddingProvider)
-
-智谱 AI 嵌入服务：
-
-```csharp
-// 生成单个文本的嵌入
-var embedding = await _embeddingProvider.GenerateEmbeddingAsync("这是一段文本");
-
-// 批量生成
-var embeddings = await _embeddingProvider.GenerateEmbeddingsAsync(new[] { "文本1", "文本2" });
-```
-
-### 5. Semantic Kernel 插件
-
-基础设施层提供的通用 SK 插件：
-
-```csharp
-// VectorSearchPlugin - 向量检索
-var results = await vectorSearchPlugin.SearchSimilarAsync(
-    collectionName: "game-lore",
-    query: "关于龙的历史",
-    topK: 3);
-
-// MemoryPlugin - 对话历史管理
-var history = await memoryPlugin.LoadConversationHistoryAsync("session-001");
-await memoryPlugin.SaveConversationTurnAsync("session-001", userMessage, assistantMessage);
-```
-
 ## 配置
 
 ### appsettings.json
@@ -160,11 +126,6 @@ await memoryPlugin.SaveConversationTurnAsync("session-001", userMessage, assista
     "ConnectionString": "localhost:6379",
     "DefaultDatabase": 0,
     "KeyPrefix": "ai-rpg:"
-  },
-  "Zhipu": {
-    "ApiKey": "your-api-key",
-    "Model": "embedding-3",
-    "Dimensions": 512
   }
 }
 ```
@@ -182,49 +143,42 @@ builder.Services.AddInfrastructure(builder.Configuration);
 services.AddSingleton<IVectorStore, QdrantClient>();
 services.AddSingleton<IGraphStore, Neo4jClient>();
 services.AddSingleton<ICacheService, RedisCacheService>();
-services.AddSingleton<IEmbeddingProvider, ZhipuEmbedding>();
-```
-
-## 与 Semantic Kernel 集成
-
-基础设施层提供通用插件，应用层可以将其注册到 SK Kernel：
-
-```csharp
-// 在应用层（如 AI-RPG.Application）
-public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration config)
-{
-    // 先注册基础设施
-    services.AddInfrastructure(config);
-    
-    // 创建 Kernel 并添加基础设施插件
-    services.AddSingleton<Kernel>(sp =>
-    {
-        var builder = Kernel.CreateBuilder();
-        
-        // 添加 LLM
-        builder.AddOpenAIChatCompletion("gpt-4", config["OpenAI:ApiKey"]!);
-        
-        // 添加基础设施插件
-        builder.Plugins.AddFromObject(sp.GetRequiredService<VectorSearchPlugin>(), "VectorSearch");
-        builder.Plugins.AddFromObject(sp.GetRequiredService<MemoryPlugin>(), "Memory");
-        
-        return builder.Build();
-    });
-    
-    return services;
-}
 ```
 
 ## 依赖包
 
 | 包名 | 版本 | 用途 |
 |------|------|------|
-| Microsoft.SemanticKernel | 1.40.0 | AI 能力框架 |
-| OpenAI | 2.2.0-beta.1 | OpenAI API |
 | Qdrant.Client | 1.17.0 | 向量数据库 |
 | Neo4j.Driver | 5.27.0 | 图数据库 |
 | StackExchange.Redis | 2.8.24 | Redis 客户端 |
 | Microsoft.Extensions.* | 9.0.2 | 微软扩展库 |
+
+## 迁移说明
+
+### 文本嵌入服务 (IEmbeddingProvider) → AI-RPG.AICapabilities 层
+
+⚠️ **已迁移到 AI-RPG.AICapabilities 层**
+
+文本嵌入功能已从Infrastructure层迁移到AICapabilities层，原因：
+- 文本嵌入是AI核心能力，与LLM紧密相关
+- 需要与Token管理、模型路由统一管理
+- 应用层通过AICapabilities层统一访问AI能力
+
+**迁移后的使用方式：**
+```csharp
+// 在Program.cs中
+builder.Services.AddAICapabilities(builder.Configuration);
+
+// 或者单独注册
+services.AddEmbeddingServices(configuration);
+```
+
+### Semantic Kernel 插件 → AI-RPG.AICapabilities 层
+
+⚠️ **已迁移到 AI-RPG.AICapabilities 层**
+
+原`VectorSearchPlugin`和`MemoryPlugin`已迁移到AICapabilities层，作为AI能力的组成部分。
 
 ## 架构说明
 
@@ -232,22 +186,22 @@ public static IServiceCollection AddApplication(this IServiceCollection services
 
 ```
 ┌─────────────────────────────────────┐
-│         Application Layer           │  ← 业务插件（带 SK 特性）
+│         Application Layer           │
 │    (AI-RPG.Application)             │
 ├─────────────────────────────────────┤
-│         Infrastructure Layer        │  ← 本层
+│      AI-RPG.AICapabilities          │  ← AI能力层（LLM、嵌入、插件）
+├─────────────────────────────────────┤
+│         Infrastructure Layer        │  ← 本层（数据存储、缓存）
 │  - Services: 接口定义               │
 │  - Implementations: 技术实现        │
-│  - Plugins: 通用 SK 插件（无特性）  │
 └─────────────────────────────────────┘
 ```
 
 ### 设计原则
 
 1. **接口与实现分离** - Services 定义接口，Implementations 提供具体实现
-2. **插件化设计** - Plugins 提供通用能力，应用层决定如何组装
-3. **无业务逻辑** - 本层只提供技术能力，业务逻辑在上层实现
-4. **Semantic Kernel 友好** - 提供 SK 插件，支持 AI 应用开发
+2. **无业务逻辑** - 本层只提供技术能力，业务逻辑在上层实现
+3. **技术中立** - 不依赖特定AI框架，纯数据存储和访问
 
 ## 许可证
 

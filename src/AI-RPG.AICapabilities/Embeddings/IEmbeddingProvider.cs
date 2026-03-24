@@ -1,4 +1,4 @@
-namespace AI_RPG.Infrastructure.Services;
+namespace AI_RPG.AICapabilities.Embeddings;
 
 /// <summary>
 /// 文本嵌入提供商接口
