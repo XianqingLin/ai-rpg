@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="src\AI-RPG.Infrastructure\AI-RPG.Infrastructure.csproj" />
   <Project Path="src\AI-RPG.AICapabilities\AI-RPG.AICapabilities.csproj" />
+  <Project Path="src\AI-RPG.Domain\AI-RPG.Domain.csproj" />
 </Solution>
