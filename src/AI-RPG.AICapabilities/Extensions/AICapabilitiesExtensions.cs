@@ -122,13 +122,11 @@ public static class AICapabilitiesExtensions
             var kernelBuilder = Kernel.CreateBuilder();
 
             // 使用OpenAI连接器连接到Kimi API
+            // 注意：需要设置Endpoint来覆盖默认的OpenAI地址
             kernelBuilder.AddOpenAIChatCompletion(
                 modelId: options.ModelName,
                 apiKey: options.ApiKey,
-                httpClient: new HttpClient
-                {
-                    BaseAddress = new Uri(options.BaseUrl)
-                });
+                endpoint: new Uri(options.BaseUrl));
 
             var kernel = kernelBuilder.Build();
 
@@ -156,10 +154,7 @@ public static class AICapabilitiesExtensions
             kernelBuilder.AddOpenAIChatCompletion(
                 modelId: options.ModelName,
                 apiKey: options.ApiKey,
-                httpClient: new HttpClient
-                {
-                    BaseAddress = new Uri(options.BaseUrl)
-                });
+                endpoint: new Uri(options.BaseUrl));
 
             var kernel = kernelBuilder.Build();
 

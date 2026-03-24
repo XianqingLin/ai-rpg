@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AI-RPG.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6da6e01851675bae7a5635dddd65ae60365ec2fe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+089ef6db8e7faa8d8a13939e16410eceeb61144e")]
 [assembly: System.Reflection.AssemblyProductAttribute("AI-RPG.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AI-RPG.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

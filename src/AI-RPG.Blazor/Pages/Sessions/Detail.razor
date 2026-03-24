@@ -3,7 +3,6 @@
 @inject DialogueService DialogueService
 @inject NavigationManager Navigation
 @inject ISnackbar Snackbar
-@inject IDialogService DialogService
 
 <PageTitle>@(_session?.Title ?? "会话") - AI-RPG</PageTitle>
 
@@ -18,7 +17,6 @@ else if (_session == null)
 else
 {
     <MudGrid>
-        <!-- 左侧：会话信息 -->
         <MudItem xs="12" md="3">
             <MudPaper Elevation="2" Class="pa-4 mb-4">
                 <MudText Typo="Typo.h6">@_session.Title</MudText>
@@ -26,41 +24,14 @@ else
                     @GetStatusText(_session.Status)
                 </MudChip>
                 <MudText Typo="Typo.caption">创建于 @_session.CreatedAt.ToString("yyyy-MM-dd HH:mm")</MudText>
-                
                 <MudDivider Class="my-2" />
-                
                 <MudText Typo="Typo.subtitle2">当前场景</MudText>
                 <MudText Typo="Typo.body2">@_session.CurrentScene.Name</MudText>
                 <MudText Typo="Typo.caption" Class="mud-text-secondary">@_session.CurrentScene.Description</MudText>
-                
-                <MudDivider Class="my-2" />
-                
-                <MudButton Variant="Variant.Outlined" 
-                          Color="Color.Primary" 
-                          Size="Size.Small"
-                          OnClick="ShowAddNPCDialog"
-                          StartIcon="@Icons.Material.Filled.Add"
-                          FullWidth="true"
-                          Class="mb-2">
-                    添加 NPC
-                </MudButton>
-
-                @if (_session.Status == "Preparing")
-                {
-                    <MudButton Variant="Variant.Filled" 
-                              Color="Color.Success" 
-                              Size="Size.Small"
-                              OnClick="StartSession"
-                              FullWidth="true">
-                        开始会话
-                    </MudButton>
-                }
             </MudPaper>
 
-            <!-- 参与者列表 -->
             <MudPaper Elevation="2" Class="pa-4">
                 <MudText Typo="Typo.subtitle2" Class="mb-2">参与者</MudText>
-                
                 @if (_session.Players.Any())
                 {
                     <MudText Typo="Typo.caption" Class="mud-text-secondary">玩家</MudText>
@@ -72,7 +43,6 @@ else
                         </MudChip>
                     }
                 }
-
                 @if (_session.NPCs.Any())
                 {
                     <MudText Typo="Typo.caption" Class="mud-text-secondary mt-2">NPC</MudText>
@@ -84,18 +54,11 @@ else
                         </MudChip>
                     }
                 }
-
-                @if (!_session.Players.Any() && !_session.NPCs.Any())
-                {
-                    <MudText Typo="Typo.caption" Class="mud-text-secondary">暂无参与者</MudText>
-                }
             </MudPaper>
         </MudItem>
 
-        <!-- 右侧：对话区域 -->
         <MudItem xs="12" md="9">
             <MudPaper Elevation="2" Class="d-flex flex-column" Style="height: 70vh;">
-                <!-- 消息列表 -->
                 <MudList T="DialogueTurnDto" Dense="true" Class="flex-1 overflow-auto pa-4" @ref="_messageList">
                     @if (_messages.Count == 0)
                     {
@@ -108,12 +71,8 @@ else
                         @foreach (var message in _messages)
                         {
                             <div class="d-flex @(IsPlayerMessage(message) ? "justify-end" : "justify-start") mb-2">
-                                <MudPaper Elevation="1" 
-                                         Class="@GetMessageClass(message)"
-                                         Style="max-width: 70%; word-break: break-word;">
-                                    <MudText Typo="Typo.caption" Class="d-block mb-1">
-                                        @message.SpeakerName
-                                    </MudText>
+                                <MudPaper Elevation="1" Class="@GetMessageClass(message)" Style="max-width: 70%; word-break: break-word;">
+                                    <MudText Typo="Typo.caption" Class="d-block mb-1">@message.SpeakerName</MudText>
                                     <MudText Typo="Typo.body2">@message.Content</MudText>
                                     <MudText Typo="Typo.caption" Class="mud-text-secondary d-block mt-1" Style="font-size: 10px;">
                                         @message.Timestamp.ToString("HH:mm:ss")
@@ -122,20 +81,8 @@ else
                             </div>
                         }
                     }
-                    
-                    @if (_isStreaming)
-                    {
-                        <div class="d-flex justify-start mb-2">
-                            <MudPaper Elevation="1" Class="pa-3" Style="max-width: 70%;">
-                                <MudText Typo="Typo.caption" Class="d-block mb-1">@_streamingSpeaker</MudText>
-                                <MudText Typo="Typo.body2">@_streamingContent</MudText>
-                                <MudProgressLinear Color="Color.Primary" Indeterminate="true" Size="Size.Small" Class="mt-2" />
-                            </MudPaper>
-                        </div>
-                    }
                 </MudList>
 
-                <!-- 输入区域 -->
                 <MudDivider />
                 <div class="pa-4">
                     @if (_session.Status == "Running")
@@ -144,31 +91,23 @@ else
                             <MudItem xs="12">
                                 @if (!_isJoined)
                                 {
-                                    <MudButton Variant="Variant.Filled" 
-                                              Color="Color.Primary" 
-                                              OnClick="JoinSession"
-                                              FullWidth="true">
+                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="JoinSession" FullWidth="true">
                                         加入会话
                                     </MudButton>
                                 }
                                 else
                                 {
-                                    <MudTextField @bind-Value="_messageInput"
-                                                 Label="输入消息..."
-                                                 Variant="Variant.Outlined"
-                                                 Adornment="Adornment.End"
-                                                 AdornmentIcon="@Icons.Material.Filled.Send"
-                                                 OnAdornmentClick="SendMessageAsync"
-                                                 OnKeyDown="OnKeyDown"
-                                                 Disabled="_isSending"
-                                                 AutoFocus="true" />
+                                    <MudTextField @bind-Value="_messageInput" Label="输入消息..." Variant="Variant.Outlined"
+                                                 Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Send"
+                                                 OnAdornmentClick="SendMessageAsync" OnKeyDown="OnKeyDown"
+                                                 Disabled="_isSending" AutoFocus="true" />
                                 }
                             </MudItem>
                         </MudGrid>
                     }
                     else if (_session.Status == "Preparing")
                     {
-                        <MudAlert Severity="Severity.Info">会话准备中，点击左侧"开始会话"按钮开始游戏</MudAlert>
+                        <MudAlert Severity="Severity.Info">会话准备中，请稍候...</MudAlert>
                     }
                     else if (_session.Status == "Paused")
                     {
@@ -185,24 +124,17 @@ else
 }
 
 @code {
-    [Parameter]
-    public string SessionId { get; set; } = "";
+    [Parameter] public string SessionId { get; set; } = "";
 
     private SessionDto? _session;
     private List<DialogueTurnDto> _messages = new();
     private MudList<DialogueTurnDto>? _messageList;
-    
     private bool _isLoading = true;
     private bool _isJoined = false;
     private bool _isSending = false;
-    private bool _isStreaming = false;
-    
     private string _messageInput = "";
-    private string _streamingContent = "";
-    private string _streamingSpeaker = "";
-    
     private string _currentUserId = "user-001";
-    private string _currentPlayerName = "勇者";
+    private string _currentPlayerName = "调查员";
     private string? _currentPlayerId;
 
     protected override async Task OnInitializedAsync()
@@ -218,12 +150,9 @@ else
             _session = await SessionService.GetAsync(SessionId);
             if (_session != null)
             {
-                // 检查当前用户是否已加入
                 var player = _session.Players.FirstOrDefault(p => p.UserId == _currentUserId);
                 _isJoined = player != null;
                 _currentPlayerId = player?.Id;
-                
-                // 加载历史消息
                 _messages = _session.RecentHistory.ToList();
             }
         }
@@ -260,20 +189,6 @@ else
         }
     }
 
-    private async Task StartSession()
-    {
-        var result = await SessionService.StartAsync(SessionId);
-        if (result != null)
-        {
-            Snackbar.Add("会话已开始！", Severity.Success);
-            await LoadSessionAsync();
-        }
-        else
-        {
-            Snackbar.Add("开始会话失败", Severity.Error);
-        }
-    }
-
     private async Task SendMessageAsync()
     {
         if (string.IsNullOrWhiteSpace(_messageInput) || _currentPlayerId == null) return;
@@ -281,6 +196,18 @@ else
         _isSending = true;
         var userMessage = _messageInput;
         _messageInput = "";
+
+        // 先显示用户消息并刷新UI
+        _messages.Add(new DialogueTurnDto
+        {
+            SpeakerId = _currentPlayerId,
+            SpeakerName = _currentPlayerName,
+            Content = userMessage,
+            Type = "Speech",
+            Timestamp = DateTime.Now
+        });
+        StateHasChanged();
+        await ScrollToBottomAsync();
 
         try
         {
@@ -291,17 +218,6 @@ else
                 Message = userMessage
             };
 
-            // 先显示用户消息
-            _messages.Add(new DialogueTurnDto
-            {
-                SpeakerId = _currentPlayerId,
-                SpeakerName = _currentPlayerName,
-                Content = userMessage,
-                Type = "Speech",
-                Timestamp = DateTime.Now
-            });
-
-            // 调用 API 获取 AI 响应
             var response = await DialogueService.SendMessageAsync(request);
             
             if (response?.Success == true)
@@ -318,17 +234,41 @@ else
             else
             {
                 Snackbar.Add(response?.ErrorMessage ?? "发送消息失败", Severity.Error);
+                // 添加错误提示到对话中
+                _messages.Add(new DialogueTurnDto
+                {
+                    SpeakerId = "system",
+                    SpeakerName = "系统",
+                    Content = $"[错误: {response?.ErrorMessage ?? "无法获取AI响应"}]",
+                    Type = "System",
+                    Timestamp = DateTime.Now
+                });
             }
         }
         catch (Exception ex)
         {
             Snackbar.Add($"发送消息失败: {ex.Message}", Severity.Error);
+            _messages.Add(new DialogueTurnDto
+            {
+                SpeakerId = "system",
+                SpeakerName = "系统",
+                Content = $"[异常: {ex.Message}]",
+                Type = "System",
+                Timestamp = DateTime.Now
+            });
         }
         finally
         {
             _isSending = false;
+            StateHasChanged();
             await ScrollToBottomAsync();
         }
+    }
+
+    private async Task ScrollToBottomAsync()
+    {
+        await Task.Delay(50);
+        StateHasChanged();
     }
 
     private async Task OnKeyDown(KeyboardEventArgs e)
@@ -337,36 +277,6 @@ else
         {
             await SendMessageAsync();
         }
-    }
-
-    private async Task ShowAddNPCDialog()
-    {
-        var parameters = new DialogParameters();
-        var options = new DialogOptions { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Small };
-        
-        var dialog = await DialogService.ShowAsync<AddNPCDialog>("添加 NPC", parameters, options);
-        var result = await dialog.Result;
-
-        if (result is { Canceled: false, Data: AddNPCRequest request })
-        {
-            var npc = await SessionService.AddNPCAsync(SessionId, request);
-            if (npc != null)
-            {
-                Snackbar.Add($"NPC {npc.Name} 添加成功！", Severity.Success);
-                await LoadSessionAsync();
-            }
-            else
-            {
-                Snackbar.Add("添加 NPC 失败", Severity.Error);
-            }
-        }
-    }
-
-    private async Task ScrollToBottomAsync()
-    {
-        // 简单延迟让 UI 更新
-        await Task.Delay(100);
-        StateHasChanged();
     }
 
     private bool IsPlayerMessage(DialogueTurnDto message)

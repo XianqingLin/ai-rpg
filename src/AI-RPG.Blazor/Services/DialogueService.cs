@@ -15,12 +15,34 @@ public class DialogueService
     // 发送消息
     public async Task<DialogueResponseDto?> SendMessageAsync(SendMessageRequest request)
     {
-        var response = await _httpClient.PostAsJsonAsync($"api/sessions/{request.SessionId}/dialogue", request);
-        if (response.IsSuccessStatusCode)
+        try
         {
-            return await response.Content.ReadFromJsonAsync<DialogueResponseDto>();
+            var response = await _httpClient.PostAsJsonAsync($"api/sessions/{request.SessionId}/dialogue", request);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<DialogueResponseDto>();
+                return result;
+            }
+            else
+            {
+                // 读取错误内容
+                var errorContent = await response.Content.ReadAsStringAsync();
+                return new DialogueResponseDto
+                {
+                    Success = false,
+                    ErrorMessage = $"HTTP {(int)response.StatusCode}: {errorContent}"
+                };
+            }
         }
-        return null;
+        catch (Exception ex)
+        {
+            return new DialogueResponseDto
+            {
+                Success = false,
+                ErrorMessage = $"请求异常: {ex.Message}"
+            };
+        }
     }
 
     // 发送消息（简化版）

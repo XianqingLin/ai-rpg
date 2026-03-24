@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>AI_RPG.AICapabilities</RootNamespace>
+    <NoWarn>SKEXP0010</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

@@ -47,11 +47,7 @@ public class DialogueController : ControllerBase
 
             var response = await _dialogueService.SendMessageAsync(messageRequest, cancellationToken);
 
-            if (!response.Success)
-            {
-                return BadRequest(new { Error = response.ErrorMessage });
-            }
-
+            // 始终返回 200 OK，让前端通过 Success 字段判断结果
             return Ok(response);
         }
         catch (Exception ex)

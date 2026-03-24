@@ -1,76 +1,130 @@
 @page "/"
+@inject SessionService SessionService
+@inject NavigationManager Navigation
+@inject ISnackbar Snackbar
 
 <PageTitle>AI-RPG - AI 跑团游戏</PageTitle>
 
-<MudText Typo="Typo.h3" Class="mb-4">欢迎来到 AI-RPG</MudText>
+<div class="d-flex flex-column align-center justify-center" style="min-height: 80vh;">
+    <MudText Typo="Typo.h2" Class="mb-4" Align="Align.Center">迷雾小镇</MudText>
+    
+    <MudText Typo="Typo.body1" Class="mb-6" Align="Align.Center" Style="max-width: 600px;">
+        @DefaultScenario.Setting.WorldDescription
+    </MudText>
 
-<MudText Typo="Typo.body1" Class="mb-4">
-    AI-RPG 是一个基于 AI 的跑团游戏平台。在这里，你可以：
-</MudText>
+    <MudPaper Elevation="3" Class="pa-6 mb-6" Style="max-width: 600px; width: 100%;">
+        <MudText Typo="Typo.h6" Class="mb-4">你将遇到的角色</MudText>
+        
+        @foreach (var npc in DefaultScenario.DefaultNPCs)
+        {
+            <MudCard Elevation="1" Class="mb-4">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.subtitle1">@npc.Name</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText Typo="Typo.body2" Class="mb-2">
+                        <strong>外貌：</strong>@npc.Appearance
+                    </MudText>
+                    <MudText Typo="Typo.body2" Class="mb-2">
+                        <strong>性格：</strong>@npc.Personality
+                    </MudText>
+                    <MudText Typo="Typo.body2">
+                        <strong>背景：</strong>@npc.Background
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        }
 
-<MudGrid Class="mb-4">
-    <MudItem xs="12" md="4">
-        <MudCard Elevation="2" Class="pa-4">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h6">创建会话</MudText>
-                </CardHeaderContent>
-                <CardHeaderActions>
-                    <MudIconButton Icon="@Icons.Material.Filled.Add" Color="Color.Primary" />
-                </CardHeaderActions>
-            </MudCardHeader>
-            <MudCardContent>
-                <MudText>创建一个新的跑团会话，设定游戏世界观和场景。</MudText>
-            </MudCardContent>
-            <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Primary" Href="sessions/create">立即创建</MudButton>
-            </MudCardActions>
-        </MudCard>
-    </MudItem>
-    <MudItem xs="12" md="4">
-        <MudCard Elevation="2" Class="pa-4">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h6">加入会话</MudText>
-                </CardHeaderContent>
-                <CardHeaderActions>
-                    <MudIconButton Icon="@Icons.Material.Filled.Login" Color="Color.Secondary" />
-                </CardHeaderActions>
-            </MudCardHeader>
-            <MudCardContent>
-                <MudText>加入已有的会话，与其他玩家一起冒险。</MudText>
-            </MudCardContent>
-            <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Secondary" Href="sessions">查看会话</MudButton>
-            </MudCardActions>
-        </MudCard>
-    </MudItem>
-    <MudItem xs="12" md="4">
-        <MudCard Elevation="2" Class="pa-4">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h6">AI 主持人</MudText>
-                </CardHeaderContent>
-                <CardHeaderActions>
-                    <MudIconButton Icon="@Icons.Material.Filled.SmartToy" Color="Color.Info" />
-                </CardHeaderActions>
-            </MudCardHeader>
-            <MudCardContent>
-                <MudText>由 Kimi AI 担任主持人，为你带来沉浸式体验。</MudText>
-            </MudCardContent>
-            <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Info">了解更多</MudButton>
-            </MudCardActions>
-        </MudCard>
-    </MudItem>
-</MudGrid>
+        <MudDivider Class="my-4" />
+        
+        <MudText Typo="Typo.body2" Class="mud-text-secondary">
+            <strong>主持人：</strong>@DefaultScenario.AIHost.Name - @DefaultScenario.AIHost.Description
+        </MudText>
+    </MudPaper>
 
-<MudDivider Class="my-4" />
+    <MudButton Variant="Variant.Filled" 
+               Color="Color.Primary" 
+               Size="Size.Large"
+               OnClick="StartGameAsync"
+               Disabled="_isStarting"
+               StartIcon="@Icons.Material.Filled.PlayArrow"
+               Style="min-width: 200px;">
+        @if (_isStarting)
+        {
+            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+            <MudText Class="ms-2">准备中...</MudText>
+        }
+        else
+        {
+            <MudText>开始游戏</MudText>
+        }
+    </MudButton>
+</div>
 
-<MudText Typo="Typo.h5" Class="mb-2">快速开始</MudText>
-<MudText Typo="Typo.body2">
-    1. 点击"创建会话"设定你的游戏世界<br />
-    2. 添加 NPC 角色丰富你的故事<br />
-    3. 开始会话并与 AI 主持人互动<br />
-    4. 享受你的跑团冒险！
-</MudText>
+@code {
+    private bool _isStarting = false;
+    private string _currentUserId = "user-001";
+    private string _currentPlayerName = "调查员";
+
+    private async Task StartGameAsync()
+    {
+        _isStarting = true;
+        
+        try
+        {
+            // 1. 创建会话
+            var createRequest = DefaultScenario.CreateSessionRequest();
+            var session = await SessionService.CreateAsync(createRequest);
+            
+            if (session == null)
+            {
+                Snackbar.Add("创建会话失败", Severity.Error);
+                return;
+            }
+
+            // 2. 加入会话
+            var joinRequest = new JoinSessionRequest
+            {
+                SessionId = session.Id,
+                UserId = _currentUserId,
+                PlayerName = _currentPlayerName
+            };
+            
+            var joinedSession = await SessionService.JoinAsync(session.Id, joinRequest);
+            if (joinedSession == null)
+            {
+                Snackbar.Add("加入会话失败", Severity.Error);
+                return;
+            }
+
+            // 3. 添加默认NPC
+            foreach (var npc in DefaultScenario.DefaultNPCs)
+            {
+                await SessionService.AddNPCAsync(session.Id, npc);
+            }
+
+            // 4. 开始会话（主持人由后端自动创建）
+            var startedSession = await SessionService.StartAsync(session.Id);
+            if (startedSession == null)
+            {
+                Snackbar.Add("开始会话失败", Severity.Error);
+                return;
+            }
+
+            Snackbar.Add("游戏开始！", Severity.Success);
+            
+            // 5. 跳转到会话页面
+            Navigation.NavigateTo($"/sessions/{session.Id}");
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"启动游戏失败: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            _isStarting = false;
+        }
+    }
+}
