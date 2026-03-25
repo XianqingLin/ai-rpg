@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>AI_RPG.Infrastructure</RootNamespace>
+    <NoWarn>SKEXP0010;SKEXP0001</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,10 +22,16 @@
     <PackageReference Include="StackExchange.Redis" Version="2.8.24" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.2" />
     
+    <!-- Database - PostgreSQL -->
+    <PackageReference Include="Npgsql" Version="9.0.3" />
+    
     <!-- Semantic Kernel -->
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.40.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.41.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.PromptTemplates.Handlebars" Version="1.40.0" />
     
     <!-- Microsoft Extensions -->
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
@@ -36,6 +43,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AI-RPG.Domain\AI-RPG.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

@@ -9,12 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AI-RPG.Domain\AI-RPG.Domain.csproj" />
     <ProjectReference Include="..\AI-RPG.Application\AI-RPG.Application.csproj" />
-    <ProjectReference Include="..\AI-RPG.AICapabilities\AI-RPG.AICapabilities.csproj" />
     <ProjectReference Include="..\AI-RPG.Infrastructure\AI-RPG.Infrastructure.csproj" />
   </ItemGroup>
 

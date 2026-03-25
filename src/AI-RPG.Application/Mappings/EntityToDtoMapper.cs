@@ -4,6 +4,35 @@ using AI_RPG.Domain.ValueObjects;
 
 namespace AI_RPG.Application.Mappings;
 
+public static class UserMapper
+{
+    public static UserDto ToDto(this User user)
+    {
+        return new UserDto
+        {
+            Id = user.Id.ToString(),
+            Username = user.Username,
+            Email = user.Email,
+            DisplayName = user.GetDisplayName(),
+            AvatarUrl = user.AvatarUrl,
+            IsActive = user.IsActive,
+            CreatedAt = user.CreatedAt,
+            LastLoginAt = user.LastLoginAt
+        };
+    }
+
+    public static UserSummaryDto ToSummaryDto(this User user)
+    {
+        return new UserSummaryDto
+        {
+            Id = user.Id.ToString(),
+            Username = user.Username,
+            DisplayName = user.GetDisplayName(),
+            IsActive = user.IsActive
+        };
+    }
+}
+
 /// <summary>
 /// 领域实体到 DTO 的映射器
 /// </summary>

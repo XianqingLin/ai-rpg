@@ -1,0 +1,204 @@
+@baseUrl = http://localhost:5238
+@contentType = application/json
+
+### ==================== 注册与登录 ====================
+
+### 1. 用户注册
+POST {{baseUrl}}/api/users/register
+Content-Type: {{contentType}}
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "Test123456",
+  "displayName": "测试用户"
+}
+
+### 2. 用户注册（第二个用户，用于测试列表）
+POST {{baseUrl}}/api/users/register
+Content-Type: {{contentType}}
+
+{
+  "username": "alice",
+  "email": "alice@example.com",
+  "password": "Alice123456",
+  "displayName": "Alice"
+}
+
+### 3. 用户注册（第三个用户）
+POST {{baseUrl}}/api/users/register
+Content-Type: {{contentType}}
+
+{
+  "username": "bob",
+  "email": "bob@example.com",
+  "password": "Bob123456",
+  "displayName": "Bob"
+}
+
+### 4. 用户登录（使用用户名）
+POST {{baseUrl}}/api/users/login
+Content-Type: {{contentType}}
+
+{
+  "usernameOrEmail": "testuser",
+  "password": "Test123456"
+}
+
+### 5. 用户登录（使用邮箱）
+POST {{baseUrl}}/api/users/login
+Content-Type: {{contentType}}
+
+{
+  "usernameOrEmail": "test@example.com",
+  "password": "Test123456"
+}
+
+### 6. 用户登录（密码错误）
+POST {{baseUrl}}/api/users/login
+Content-Type: {{contentType}}
+
+{
+  "usernameOrEmail": "testuser",
+  "password": "WrongPassword"
+}
+
+### ==================== 查询操作 ====================
+
+### 7. 获取所有用户列表
+GET {{baseUrl}}/api/users
+
+### 8. 获取活跃用户列表
+GET {{baseUrl}}/api/users/active
+
+### 9. 根据ID获取用户（请将 {userId} 替换为实际的用户ID）
+GET {{baseUrl}}/api/users/{userId}
+
+### 10. 根据用户名获取用户
+GET {{baseUrl}}/api/users/username/testuser
+
+### 11. 检查用户名是否可用（应该返回 false，因为已存在）
+GET {{baseUrl}}/api/users/check-username/testuser
+
+### 12. 检查用户名是否可用（应该返回 true）
+GET {{baseUrl}}/api/users/check-username/newuser123
+
+### 13. 检查邮箱是否可用（应该返回 false，因为已存在）
+GET {{baseUrl}}/api/users/check-email/test@example.com
+
+### 14. 检查邮箱是否可用（应该返回 true）
+GET {{baseUrl}}/api/users/check-email/newemail@example.com
+
+### ==================== 更新操作 ====================
+
+### 15. 更新用户信息（显示名称、头像）
+PUT {{baseUrl}}/api/users/{userId}
+Content-Type: {{contentType}}
+
+{
+  "displayName": "更新的显示名称",
+  "avatarUrl": "https://example.com/avatar.png"
+}
+
+### 16. 更新用户名
+PUT {{baseUrl}}/api/users/{userId}/username
+Content-Type: {{contentType}}
+
+{
+  "newUsername": "newusername"
+}
+
+### 17. 更新邮箱
+PUT {{baseUrl}}/api/users/{userId}/email
+Content-Type: {{contentType}}
+
+{
+  "newEmail": "newemail@example.com"
+}
+
+### 18. 更新密码
+PUT {{baseUrl}}/api/users/{userId}/password
+Content-Type: {{contentType}}
+
+{
+  "currentPassword": "Test123456",
+  "newPassword": "NewPassword123"
+}
+
+### ==================== 状态管理 ====================
+
+### 19. 停用用户
+POST {{baseUrl}}/api/users/{userId}/deactivate
+
+### 20. 激活用户
+POST {{baseUrl}}/api/users/{userId}/activate
+
+### ==================== 删除操作 ====================
+
+### 21. 删除用户
+DELETE {{baseUrl}}/api/users/{userId}
+
+### ==================== 错误测试 ====================
+
+### 22. 注册重复用户名（应该返回 409 Conflict）
+POST {{baseUrl}}/api/users/register
+Content-Type: {{contentType}}
+
+{
+  "username": "testuser",
+  "email": "another@example.com",
+  "password": "Test123456"
+}
+
+### 23. 注册重复邮箱（应该返回 409 Conflict）
+POST {{baseUrl}}/api/users/register
+Content-Type: {{contentType}}
+
+{
+  "username": "anotheruser",
+  "email": "test@example.com",
+  "password": "Test123456"
+}
+
+### 24. 获取不存在的用户（应该返回 404）
+GET {{baseUrl}}/api/users/nonexistentuserid123
+
+### 25. 更新不存在的用户（应该返回 404）
+PUT {{baseUrl}}/api/users/nonexistentuserid123
+Content-Type: {{contentType}}
+
+{
+  "displayName": "测试"
+}
+
+### ==================== 边界测试 ====================
+
+### 26. 注册用户名太短（少于3个字符）
+POST {{baseUrl}}/api/users/register
+Content-Type: {{contentType}}
+
+{
+  "username": "ab",
+  "email": "short@example.com",
+  "password": "Test123456"
+}
+
+### 27. 注册邮箱格式无效
+POST {{baseUrl}}/api/users/register
+Content-Type: {{contentType}}
+
+{
+  "username": "validuser",
+  "email": "invalid-email",
+  "password": "Test123456"
+}
+
+### 28. 注册密码为空
+POST {{baseUrl}}/api/users/register
+Content-Type: {{contentType}}
+
+{
+  "username": "validuser2",
+  "email": "valid2@example.com",
+  "password": ""
+}

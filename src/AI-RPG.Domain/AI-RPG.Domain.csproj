@@ -7,4 +7,10 @@
     <RootNamespace>AI_RPG.Domain</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>AI-RPG.Infrastructure</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
 </Project>

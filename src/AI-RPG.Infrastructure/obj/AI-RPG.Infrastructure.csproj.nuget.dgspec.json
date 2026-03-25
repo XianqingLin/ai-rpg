@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj": {}
+    "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {
+    "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj",
         "projectName": "AI-RPG.Domain",
-        "projectPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj",
+        "projectPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj",
         "packagesPath": "C:\\Users\\29437\\.nuget\\packages\\",
-        "outputPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\obj\\",
+        "outputPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -343,14 +343,14 @@
         }
       }
     },
-    "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj": {
+    "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj",
         "projectName": "AI-RPG.Infrastructure",
-        "projectPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\29437\\.nuget\\packages\\",
-        "outputPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -371,8 +371,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {
-                "projectPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj"
+              "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {
+                "projectPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj"
               }
             }
           }
@@ -393,6 +393,10 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
             "Microsoft.Extensions.Caching.StackExchangeRedis": {
               "target": "Package",
               "version": "[9.0.2, )"
@@ -429,9 +433,21 @@
               "target": "Package",
               "version": "[1.40.0, )"
             },
+            "Microsoft.SemanticKernel.Connectors.OpenAI": {
+              "target": "Package",
+              "version": "[1.41.0, )"
+            },
+            "Microsoft.SemanticKernel.PromptTemplates.Handlebars": {
+              "target": "Package",
+              "version": "[1.40.0, )"
+            },
             "Neo4j.Driver": {
               "target": "Package",
               "version": "[5.27.0, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[9.0.3, )"
             },
             "OpenAI": {
               "target": "Package",

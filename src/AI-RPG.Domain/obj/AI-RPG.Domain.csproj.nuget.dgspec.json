@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {}
+    "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {}
   },
   "projects": {
-    "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {
+    "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj",
         "projectName": "AI-RPG.Domain",
-        "projectPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj",
+        "projectPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj",
         "packagesPath": "C:\\Users\\29437\\.nuget\\packages\\",
-        "outputPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\obj\\",
+        "outputPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

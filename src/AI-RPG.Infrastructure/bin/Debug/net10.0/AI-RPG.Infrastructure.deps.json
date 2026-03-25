@@ -9,6 +9,7 @@
       "AI-RPG.Infrastructure/1.0.0": {
         "dependencies": {
           "AI-RPG.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.3.0",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.2",
           "Microsoft.Extensions.Configuration": "9.0.2",
           "Microsoft.Extensions.Configuration.Binder": "9.0.2",
@@ -18,7 +19,10 @@
           "Microsoft.Extensions.Options": "9.0.2",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "9.0.2",
           "Microsoft.SemanticKernel": "1.40.0",
+          "Microsoft.SemanticKernel.Connectors.OpenAI": "1.41.0",
+          "Microsoft.SemanticKernel.PromptTemplates.Handlebars": "1.40.0",
           "Neo4j.Driver": "5.27.0",
+          "Npgsql": "9.0.3",
           "OpenAI": "2.2.0-beta.1",
           "Qdrant.Client": "1.17.0",
           "StackExchange.Redis": "2.8.24"
@@ -88,6 +92,59 @@
           "lib/net8.0/Grpc.Net.Common.dll": {
             "assemblyVersion": "2.0.0.0",
             "fileVersion": "2.71.0.0"
+          }
+        }
+      },
+      "Handlebars.Net/2.1.6": {
+        "runtime": {
+          "lib/net6.0/Handlebars.dll": {
+            "assemblyVersion": "2.1.6.0",
+            "fileVersion": "2.1.6.0"
+          }
+        }
+      },
+      "Handlebars.Net.Helpers/2.4.10": {
+        "dependencies": {
+          "Handlebars.Net.Helpers.Core": "2.4.10"
+        },
+        "runtime": {
+          "lib/net8.0/Handlebars.Net.Helpers.dll": {
+            "assemblyVersion": "2.4.10.0",
+            "fileVersion": "2.4.10.0"
+          }
+        }
+      },
+      "Handlebars.Net.Helpers.Core/2.4.10": {
+        "dependencies": {
+          "Handlebars.Net": "2.1.6",
+          "Stef.Validation": "0.1.1"
+        },
+        "runtime": {
+          "lib/net8.0/HandlebarsDotNet.Helpers.Core.dll": {
+            "assemblyVersion": "2.4.10.0",
+            "fileVersion": "2.4.10.0"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.3.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "assemblyVersion": "2.3.0.0",
+            "fileVersion": "2.3.0.25014"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.3.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "9.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "assemblyVersion": "2.3.0.0",
+            "fileVersion": "2.3.0.25014"
           }
         }
       },
@@ -293,7 +350,7 @@
           }
         }
       },
-      "Microsoft.Extensions.VectorData.Abstractions/9.0.0-preview.1.25078.1": {
+      "Microsoft.Extensions.VectorData.Abstractions/9.0.0-preview.1.25161.1": {
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.VectorData.Abstractions.dll": {
             "assemblyVersion": "9.0.0.0",
@@ -304,7 +361,7 @@
       "Microsoft.SemanticKernel/1.40.0": {
         "dependencies": {
           "Microsoft.SemanticKernel.Connectors.AzureOpenAI": "1.40.0",
-          "Microsoft.SemanticKernel.Core": "1.40.0"
+          "Microsoft.SemanticKernel.Core": "1.41.0"
         },
         "runtime": {
           "lib/net8.0/Microsoft.SemanticKernel.dll": {
@@ -313,27 +370,27 @@
           }
         }
       },
-      "Microsoft.SemanticKernel.Abstractions/1.40.0": {
+      "Microsoft.SemanticKernel.Abstractions/1.41.0": {
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
           "Microsoft.Bcl.HashCode": "1.1.1",
           "Microsoft.Extensions.AI.Abstractions": "9.3.0-preview.1.25114.11",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.2",
-          "Microsoft.Extensions.VectorData.Abstractions": "9.0.0-preview.1.25078.1"
+          "Microsoft.Extensions.VectorData.Abstractions": "9.0.0-preview.1.25161.1"
         },
         "runtime": {
           "lib/net8.0/Microsoft.SemanticKernel.Abstractions.dll": {
-            "assemblyVersion": "1.40.0.0",
-            "fileVersion": "1.40.0.0"
+            "assemblyVersion": "1.41.0.0",
+            "fileVersion": "1.41.0.0"
           }
         }
       },
       "Microsoft.SemanticKernel.Connectors.AzureOpenAI/1.40.0": {
         "dependencies": {
           "Azure.AI.OpenAI": "2.2.0-beta.1",
-          "Microsoft.SemanticKernel.Connectors.OpenAI": "1.40.0",
-          "Microsoft.SemanticKernel.Core": "1.40.0"
+          "Microsoft.SemanticKernel.Connectors.OpenAI": "1.41.0",
+          "Microsoft.SemanticKernel.Core": "1.41.0"
         },
         "runtime": {
           "lib/net8.0/Microsoft.SemanticKernel.Connectors.AzureOpenAI.dll": {
@@ -342,26 +399,39 @@
           }
         }
       },
-      "Microsoft.SemanticKernel.Connectors.OpenAI/1.40.0": {
+      "Microsoft.SemanticKernel.Connectors.OpenAI/1.41.0": {
         "dependencies": {
-          "Microsoft.SemanticKernel.Core": "1.40.0",
+          "Microsoft.SemanticKernel.Core": "1.41.0",
           "OpenAI": "2.2.0-beta.1"
         },
         "runtime": {
           "lib/net8.0/Microsoft.SemanticKernel.Connectors.OpenAI.dll": {
-            "assemblyVersion": "1.40.0.0",
-            "fileVersion": "1.40.0.0"
+            "assemblyVersion": "1.41.0.0",
+            "fileVersion": "1.41.0.0"
           }
         }
       },
-      "Microsoft.SemanticKernel.Core/1.40.0": {
+      "Microsoft.SemanticKernel.Core/1.41.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "9.0.2",
-          "Microsoft.SemanticKernel.Abstractions": "1.40.0",
+          "Microsoft.SemanticKernel.Abstractions": "1.41.0",
           "System.Numerics.Tensors": "8.0.0"
         },
         "runtime": {
           "lib/net8.0/Microsoft.SemanticKernel.Core.dll": {
+            "assemblyVersion": "1.41.0.0",
+            "fileVersion": "1.41.0.0"
+          }
+        }
+      },
+      "Microsoft.SemanticKernel.PromptTemplates.Handlebars/1.40.0": {
+        "dependencies": {
+          "Handlebars.Net": "2.1.6",
+          "Handlebars.Net.Helpers": "2.4.10",
+          "Microsoft.SemanticKernel.Core": "1.41.0"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.SemanticKernel.PromptTemplates.Handlebars.dll": {
             "assemblyVersion": "1.40.0.0",
             "fileVersion": "1.40.0.0"
           }
@@ -375,6 +445,17 @@
           "lib/net8.0/Neo4j.Driver.dll": {
             "assemblyVersion": "5.27.38.0",
             "fileVersion": "5.27.0.0"
+          }
+        }
+      },
+      "Npgsql/9.0.3": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Npgsql.dll": {
+            "assemblyVersion": "9.0.3.0",
+            "fileVersion": "9.0.3.0"
           }
         }
       },
@@ -418,6 +499,14 @@
           "lib/net8.0/StackExchange.Redis.dll": {
             "assemblyVersion": "2.0.0.0",
             "fileVersion": "2.8.24.3255"
+          }
+        }
+      },
+      "Stef.Validation/0.1.1": {
+        "runtime": {
+          "lib/net6.0/Stef.Validation.dll": {
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
           }
         }
       },
@@ -505,6 +594,41 @@
       "sha512": "sha512-v0c8R97TwRYwNXlC8GyRXwYTCNufpDfUtj9la+wUrZFzVWkFJuNAltU+c0yI3zu0jl54k7en6u2WKgZgd57r2Q==",
       "path": "grpc.net.common/2.71.0",
       "hashPath": "grpc.net.common.2.71.0.nupkg.sha512"
+    },
+    "Handlebars.Net/2.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WsYWCEXsIM6hEOSOSRHtIYLjC8BnbT5MVmqhNKRqUI7qiv0t8x3nJiBTEv0ZZfvUAMAFnadGIzSsS/U2anVG1Q==",
+      "path": "handlebars.net/2.1.6",
+      "hashPath": "handlebars.net.2.1.6.nupkg.sha512"
+    },
+    "Handlebars.Net.Helpers/2.4.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RKpqCkGsK56n8ddCe0O5ovlsBTFXKT5Q1pHUKmIUkSRYJc/0FWEBxAFrcE+2yNs06EODOYGfWC6ZKWLlP5dzXQ==",
+      "path": "handlebars.net.helpers/2.4.10",
+      "hashPath": "handlebars.net.helpers.2.4.10.nupkg.sha512"
+    },
+    "Handlebars.Net.Helpers.Core/2.4.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-47Lf4GaKHHA2MhJ5iITJXctYQNBS20kxtn5nkc1K1Eh1RBOXDuArdSKNy+7SGgl3RyEuQVmsrl3EMVE1u/FBbA==",
+      "path": "handlebars.net.helpers.core/2.4.10",
+      "hashPath": "handlebars.net.helpers.core.2.4.10.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-39r9PPrjA6s0blyFv5qarckjNkaHRA5B+3b53ybuGGNTXEj1/DStQJ4NWjFL6QTRQpL9zt7nDyKxZdJOlcnq+Q==",
+      "path": "microsoft.aspnetcore.http.abstractions/2.3.0",
+      "hashPath": "microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Features/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-f10WUgcsKqrkmnz6gt8HeZ7kyKjYN30PO7cSic1lPtH7paPtnQqXPOveul/SIPI43PhRD4trttg4ywnrEmmJpA==",
+      "path": "microsoft.aspnetcore.http.features/2.3.0",
+      "hashPath": "microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/8.0.0": {
       "type": "package",
@@ -632,12 +756,12 @@
       "path": "microsoft.extensions.primitives/9.0.2",
       "hashPath": "microsoft.extensions.primitives.9.0.2.nupkg.sha512"
     },
-    "Microsoft.Extensions.VectorData.Abstractions/9.0.0-preview.1.25078.1": {
+    "Microsoft.Extensions.VectorData.Abstractions/9.0.0-preview.1.25161.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5woABLba0aAyk6X6jamKZg/3a5X0+z7hj8+325phSkPkiJCFUeY0DIlIH4KvAjtBYlLyJOObsFXdKBekFlE8hw==",
-      "path": "microsoft.extensions.vectordata.abstractions/9.0.0-preview.1.25078.1",
-      "hashPath": "microsoft.extensions.vectordata.abstractions.9.0.0-preview.1.25078.1.nupkg.sha512"
+      "sha512": "sha512-irdKMpHB9v+S+DpdrYHIRb7ADqA9weRvmcvmoP2jb/x75b4GQGxVbFCcMRcyQaHPg9zOvqnKq8ZZZ4MUfDGujA==",
+      "path": "microsoft.extensions.vectordata.abstractions/9.0.0-preview.1.25161.1",
+      "hashPath": "microsoft.extensions.vectordata.abstractions.9.0.0-preview.1.25161.1.nupkg.sha512"
     },
     "Microsoft.SemanticKernel/1.40.0": {
       "type": "package",
@@ -646,12 +770,12 @@
       "path": "microsoft.semantickernel/1.40.0",
       "hashPath": "microsoft.semantickernel.1.40.0.nupkg.sha512"
     },
-    "Microsoft.SemanticKernel.Abstractions/1.40.0": {
+    "Microsoft.SemanticKernel.Abstractions/1.41.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-q7KDXwBwN+hikB6x/G7dPLUa40jnJL+uvU8Yxyr0DLIHU84cNMbW6N2F5FqoXKAmtc1tdNFQqfBqbDBLSCd6Ng==",
-      "path": "microsoft.semantickernel.abstractions/1.40.0",
-      "hashPath": "microsoft.semantickernel.abstractions.1.40.0.nupkg.sha512"
+      "sha512": "sha512-TKC6RYkII6urioVBuhSFHTyfABN1QKe9HlKaPkWQQKkkW71/W5ROuFE/A5Fy5KNVOVENtKDvjkW03qNFcicAzw==",
+      "path": "microsoft.semantickernel.abstractions/1.41.0",
+      "hashPath": "microsoft.semantickernel.abstractions.1.41.0.nupkg.sha512"
     },
     "Microsoft.SemanticKernel.Connectors.AzureOpenAI/1.40.0": {
       "type": "package",
@@ -660,19 +784,26 @@
       "path": "microsoft.semantickernel.connectors.azureopenai/1.40.0",
       "hashPath": "microsoft.semantickernel.connectors.azureopenai.1.40.0.nupkg.sha512"
     },
-    "Microsoft.SemanticKernel.Connectors.OpenAI/1.40.0": {
+    "Microsoft.SemanticKernel.Connectors.OpenAI/1.41.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vIASsGKiVM/8rawal/JZd8gVESxLRUTkiKd2E1Sy+rNxq6VLY3eQkAHhoBrWKQnGaBlPF/SlUvlXImEsx1eIfQ==",
-      "path": "microsoft.semantickernel.connectors.openai/1.40.0",
-      "hashPath": "microsoft.semantickernel.connectors.openai.1.40.0.nupkg.sha512"
+      "sha512": "sha512-KZ5S9YBcuJ2UfPXIciFgPS23TXFLlBmJ8MAvnG8PMgWosRI7mGN6Eikc8tLkrgvI1P+uWeN4VGSztd9N+fFw4g==",
+      "path": "microsoft.semantickernel.connectors.openai/1.41.0",
+      "hashPath": "microsoft.semantickernel.connectors.openai.1.41.0.nupkg.sha512"
     },
-    "Microsoft.SemanticKernel.Core/1.40.0": {
+    "Microsoft.SemanticKernel.Core/1.41.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wvSW6nF3/j4j5S+kamxpiyvHBePWPoK34veOTK4DILfacVMO1FRNISNphBR2nb8Rm8euyMjT2yhedFSOqppDfg==",
-      "path": "microsoft.semantickernel.core/1.40.0",
-      "hashPath": "microsoft.semantickernel.core.1.40.0.nupkg.sha512"
+      "sha512": "sha512-n4Sv2pQJxgdGuqb1CC98NpqkKVEHlC3D4g7QX8pSFQJLAkqQ2gwNxyTPj8C7BsIqVfNP7Uyrbui9i3MGdTF72A==",
+      "path": "microsoft.semantickernel.core/1.41.0",
+      "hashPath": "microsoft.semantickernel.core.1.41.0.nupkg.sha512"
+    },
+    "Microsoft.SemanticKernel.PromptTemplates.Handlebars/1.40.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yEOG0S3qsDQUruujR8NpjRdannp4ECTnp3GQ/BErs2Gx57ll6iBUaHHuRgEHEIoOsDKIIYpijTd6zyvL24RjAQ==",
+      "path": "microsoft.semantickernel.prompttemplates.handlebars/1.40.0",
+      "hashPath": "microsoft.semantickernel.prompttemplates.handlebars.1.40.0.nupkg.sha512"
     },
     "Neo4j.Driver/5.27.0": {
       "type": "package",
@@ -680,6 +811,13 @@
       "sha512": "sha512-bIjjXvlldC4bDTy7sKif45br+EWC47p/pcXEVwo56SGFDJ0Gob9edi30nQY1Y4yAmEjepa4rIPICq6JjlyDUuQ==",
       "path": "neo4j.driver/5.27.0",
       "hashPath": "neo4j.driver.5.27.0.nupkg.sha512"
+    },
+    "Npgsql/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tPvY61CxOAWxNsKLEBg+oR646X4Bc8UmyQ/tJszL/7mEmIXQnnBhVJZrZEEUv0Bstu0mEsHZD5At3EO8zQRAYw==",
+      "path": "npgsql/9.0.3",
+      "hashPath": "npgsql.9.0.3.nupkg.sha512"
     },
     "OpenAI/2.2.0-beta.1": {
       "type": "package",
@@ -708,6 +846,13 @@
       "sha512": "sha512-GWllmsFAtLyhm4C47cOCipGxyEi1NQWTFUHXnJ8hiHOsK/bH3T5eLkWPVW+LRL6jDiB3g3izW3YEHgLuPoJSyA==",
       "path": "stackexchange.redis/2.8.24",
       "hashPath": "stackexchange.redis.2.8.24.nupkg.sha512"
+    },
+    "Stef.Validation/0.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Qecz9CHwt32dAU7MYWINU6QCRZ1B0/anPxzyEJGos9osyMhjrv6C+OZIl3Wl3kLtllu9cGaptTD6nOhW1rMlZw==",
+      "path": "stef.validation/0.1.1",
+      "hashPath": "stef.validation.0.1.1.nupkg.sha512"
     },
     "System.ClientModel/1.2.1": {
       "type": "package",

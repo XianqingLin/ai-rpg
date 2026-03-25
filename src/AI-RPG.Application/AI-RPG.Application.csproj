@@ -10,11 +10,13 @@
   <ItemGroup>
     <!-- 引用下层项目 -->
     <ProjectReference Include="..\AI-RPG.Domain\AI-RPG.Domain.csproj" />
-    <ProjectReference Include="..\AI-RPG.AICapabilities\AI-RPG.AICapabilities.csproj" />
     
     <!-- Microsoft Extensions -->
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.2" />
+    
+    <!-- Password Hashing -->
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
   </ItemGroup>
 
 </Project>

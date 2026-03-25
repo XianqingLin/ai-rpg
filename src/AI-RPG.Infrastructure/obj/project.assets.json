@@ -96,6 +96,76 @@
           }
         }
       },
+      "Handlebars.Net/2.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Handlebars.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Handlebars.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Handlebars.Net.Helpers/2.4.10": {
+        "type": "package",
+        "dependencies": {
+          "Handlebars.Net.Helpers.Core": "2.4.10"
+        },
+        "compile": {
+          "lib/net8.0/Handlebars.Net.Helpers.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Handlebars.Net.Helpers.dll": {}
+        }
+      },
+      "Handlebars.Net.Helpers.Core/2.4.10": {
+        "type": "package",
+        "dependencies": {
+          "Handlebars.Net": "2.1.6",
+          "Stef.Validation": "0.1.1"
+        },
+        "compile": {
+          "lib/net8.0/HandlebarsDotNet.Helpers.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/HandlebarsDotNet.Helpers.Core.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "8.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/8.0.0": {
         "type": "package",
         "compile": {
@@ -428,7 +498,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.VectorData.Abstractions/9.0.0-preview.1.25078.1": {
+      "Microsoft.Extensions.VectorData.Abstractions/9.0.0-preview.1.25161.1": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.Extensions.VectorData.Abstractions.dll": {
@@ -458,7 +528,7 @@
           }
         }
       },
-      "Microsoft.SemanticKernel.Abstractions/1.40.0": {
+      "Microsoft.SemanticKernel.Abstractions/1.41.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
@@ -466,7 +536,7 @@
           "Microsoft.Extensions.AI.Abstractions": "9.3.0-preview.1.25114.11",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
-          "Microsoft.Extensions.VectorData.Abstractions": "9.0.0-preview.1.25078.1"
+          "Microsoft.Extensions.VectorData.Abstractions": "9.0.0-preview.1.25161.1"
         },
         "compile": {
           "lib/net8.0/Microsoft.SemanticKernel.Abstractions.dll": {
@@ -497,10 +567,10 @@
           }
         }
       },
-      "Microsoft.SemanticKernel.Connectors.OpenAI/1.40.0": {
+      "Microsoft.SemanticKernel.Connectors.OpenAI/1.41.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.SemanticKernel.Core": "1.40.0",
+          "Microsoft.SemanticKernel.Core": "1.41.0",
           "OpenAI": "[2.2.0-beta.1]"
         },
         "compile": {
@@ -514,11 +584,11 @@
           }
         }
       },
-      "Microsoft.SemanticKernel.Core/1.40.0": {
+      "Microsoft.SemanticKernel.Core/1.41.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "8.0.1",
-          "Microsoft.SemanticKernel.Abstractions": "1.40.0",
+          "Microsoft.SemanticKernel.Abstractions": "1.41.0",
           "System.Numerics.Tensors": "8.0.0"
         },
         "compile": {
@@ -528,6 +598,24 @@
         },
         "runtime": {
           "lib/net8.0/Microsoft.SemanticKernel.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.SemanticKernel.PromptTemplates.Handlebars/1.40.0": {
+        "type": "package",
+        "dependencies": {
+          "Handlebars.Net": "2.1.6",
+          "Handlebars.Net.Helpers": "2.4.10",
+          "Microsoft.SemanticKernel.Core": "1.40.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.SemanticKernel.PromptTemplates.Handlebars.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.SemanticKernel.PromptTemplates.Handlebars.dll": {
             "related": ".xml"
           }
         }
@@ -544,6 +632,22 @@
         },
         "runtime": {
           "lib/net8.0/Neo4j.Driver.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Npgsql/9.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2"
+        },
+        "compile": {
+          "lib/net8.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Npgsql.dll": {
             "related": ".xml"
           }
         }
@@ -609,6 +713,15 @@
           "lib/net8.0/StackExchange.Redis.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "Stef.Validation/0.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Stef.Validation.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Stef.Validation.dll": {}
         }
       },
       "System.ClientModel/1.2.1": {
@@ -811,6 +924,93 @@
         "lib/netstandard2.1/Grpc.Net.Common.pdb",
         "lib/netstandard2.1/Grpc.Net.Common.xml",
         "packageIcon.png"
+      ]
+    },
+    "Handlebars.Net/2.1.6": {
+      "sha512": "WsYWCEXsIM6hEOSOSRHtIYLjC8BnbT5MVmqhNKRqUI7qiv0t8x3nJiBTEv0ZZfvUAMAFnadGIzSsS/U2anVG1Q==",
+      "type": "package",
+      "path": "handlebars.net/2.1.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "handlebars.net.2.1.6.nupkg.sha512",
+        "handlebars.net.nuspec",
+        "hbnet-icon.png",
+        "lib/net451/Handlebars.dll",
+        "lib/net451/Handlebars.xml",
+        "lib/net6.0/Handlebars.dll",
+        "lib/net6.0/Handlebars.xml",
+        "lib/netstandard1.3/Handlebars.dll",
+        "lib/netstandard1.3/Handlebars.xml",
+        "lib/netstandard2.0/Handlebars.dll",
+        "lib/netstandard2.0/Handlebars.xml",
+        "lib/netstandard2.1/Handlebars.dll",
+        "lib/netstandard2.1/Handlebars.xml"
+      ]
+    },
+    "Handlebars.Net.Helpers/2.4.10": {
+      "sha512": "RKpqCkGsK56n8ddCe0O5ovlsBTFXKT5Q1pHUKmIUkSRYJc/0FWEBxAFrcE+2yNs06EODOYGfWC6ZKWLlP5dzXQ==",
+      "type": "package",
+      "path": "handlebars.net.helpers/2.4.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "handlebars.net.helpers.2.4.10.nupkg.sha512",
+        "handlebars.net.helpers.nuspec",
+        "lib/net451/Handlebars.Net.Helpers.dll",
+        "lib/net452/Handlebars.Net.Helpers.dll",
+        "lib/net46/Handlebars.Net.Helpers.dll",
+        "lib/net6.0/Handlebars.Net.Helpers.dll",
+        "lib/net8.0/Handlebars.Net.Helpers.dll",
+        "lib/netstandard1.3/Handlebars.Net.Helpers.dll",
+        "lib/netstandard2.0/Handlebars.Net.Helpers.dll",
+        "lib/netstandard2.1/Handlebars.Net.Helpers.dll"
+      ]
+    },
+    "Handlebars.Net.Helpers.Core/2.4.10": {
+      "sha512": "47Lf4GaKHHA2MhJ5iITJXctYQNBS20kxtn5nkc1K1Eh1RBOXDuArdSKNy+7SGgl3RyEuQVmsrl3EMVE1u/FBbA==",
+      "type": "package",
+      "path": "handlebars.net.helpers.core/2.4.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "handlebars.net.helpers.core.2.4.10.nupkg.sha512",
+        "handlebars.net.helpers.core.nuspec",
+        "lib/net451/HandlebarsDotNet.Helpers.Core.dll",
+        "lib/net452/HandlebarsDotNet.Helpers.Core.dll",
+        "lib/net46/HandlebarsDotNet.Helpers.Core.dll",
+        "lib/net6.0/HandlebarsDotNet.Helpers.Core.dll",
+        "lib/net8.0/HandlebarsDotNet.Helpers.Core.dll",
+        "lib/netstandard1.3/HandlebarsDotNet.Helpers.Core.dll",
+        "lib/netstandard2.0/HandlebarsDotNet.Helpers.Core.dll",
+        "lib/netstandard2.1/HandlebarsDotNet.Helpers.Core.dll"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.3.0": {
+      "sha512": "39r9PPrjA6s0blyFv5qarckjNkaHRA5B+3b53ybuGGNTXEj1/DStQJ4NWjFL6QTRQpL9zt7nDyKxZdJOlcnq+Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.abstractions/2.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.xml",
+        "microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Features/2.3.0": {
+      "sha512": "f10WUgcsKqrkmnz6gt8HeZ7kyKjYN30PO7cSic1lPtH7paPtnQqXPOveul/SIPI43PhRD4trttg4ywnrEmmJpA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.features/2.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
+        "microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.features.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/8.0.0": {
@@ -1374,10 +1574,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.VectorData.Abstractions/9.0.0-preview.1.25078.1": {
-      "sha512": "5woABLba0aAyk6X6jamKZg/3a5X0+z7hj8+325phSkPkiJCFUeY0DIlIH4KvAjtBYlLyJOObsFXdKBekFlE8hw==",
+    "Microsoft.Extensions.VectorData.Abstractions/9.0.0-preview.1.25161.1": {
+      "sha512": "irdKMpHB9v+S+DpdrYHIRb7ADqA9weRvmcvmoP2jb/x75b4GQGxVbFCcMRcyQaHPg9zOvqnKq8ZZZ4MUfDGujA==",
       "type": "package",
-      "path": "microsoft.extensions.vectordata.abstractions/9.0.0-preview.1.25078.1",
+      "path": "microsoft.extensions.vectordata.abstractions/9.0.0-preview.1.25161.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1390,7 +1590,7 @@
         "lib/net8.0/Microsoft.Extensions.VectorData.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.VectorData.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.VectorData.Abstractions.xml",
-        "microsoft.extensions.vectordata.abstractions.9.0.0-preview.1.25078.1.nupkg.sha512",
+        "microsoft.extensions.vectordata.abstractions.9.0.0-preview.1.25161.1.nupkg.sha512",
         "microsoft.extensions.vectordata.abstractions.nuspec",
         "neticon.png"
       ]
@@ -1412,10 +1612,10 @@
         "microsoft.semantickernel.nuspec"
       ]
     },
-    "Microsoft.SemanticKernel.Abstractions/1.40.0": {
-      "sha512": "q7KDXwBwN+hikB6x/G7dPLUa40jnJL+uvU8Yxyr0DLIHU84cNMbW6N2F5FqoXKAmtc1tdNFQqfBqbDBLSCd6Ng==",
+    "Microsoft.SemanticKernel.Abstractions/1.41.0": {
+      "sha512": "TKC6RYkII6urioVBuhSFHTyfABN1QKe9HlKaPkWQQKkkW71/W5ROuFE/A5Fy5KNVOVENtKDvjkW03qNFcicAzw==",
       "type": "package",
-      "path": "microsoft.semantickernel.abstractions/1.40.0",
+      "path": "microsoft.semantickernel.abstractions/1.41.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1425,7 +1625,7 @@
         "lib/net8.0/Microsoft.SemanticKernel.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.SemanticKernel.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.SemanticKernel.Abstractions.xml",
-        "microsoft.semantickernel.abstractions.1.40.0.nupkg.sha512",
+        "microsoft.semantickernel.abstractions.1.41.0.nupkg.sha512",
         "microsoft.semantickernel.abstractions.nuspec"
       ]
     },
@@ -1446,10 +1646,10 @@
         "microsoft.semantickernel.connectors.azureopenai.nuspec"
       ]
     },
-    "Microsoft.SemanticKernel.Connectors.OpenAI/1.40.0": {
-      "sha512": "vIASsGKiVM/8rawal/JZd8gVESxLRUTkiKd2E1Sy+rNxq6VLY3eQkAHhoBrWKQnGaBlPF/SlUvlXImEsx1eIfQ==",
+    "Microsoft.SemanticKernel.Connectors.OpenAI/1.41.0": {
+      "sha512": "KZ5S9YBcuJ2UfPXIciFgPS23TXFLlBmJ8MAvnG8PMgWosRI7mGN6Eikc8tLkrgvI1P+uWeN4VGSztd9N+fFw4g==",
       "type": "package",
-      "path": "microsoft.semantickernel.connectors.openai/1.40.0",
+      "path": "microsoft.semantickernel.connectors.openai/1.41.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1459,14 +1659,14 @@
         "lib/net8.0/Microsoft.SemanticKernel.Connectors.OpenAI.xml",
         "lib/netstandard2.0/Microsoft.SemanticKernel.Connectors.OpenAI.dll",
         "lib/netstandard2.0/Microsoft.SemanticKernel.Connectors.OpenAI.xml",
-        "microsoft.semantickernel.connectors.openai.1.40.0.nupkg.sha512",
+        "microsoft.semantickernel.connectors.openai.1.41.0.nupkg.sha512",
         "microsoft.semantickernel.connectors.openai.nuspec"
       ]
     },
-    "Microsoft.SemanticKernel.Core/1.40.0": {
-      "sha512": "wvSW6nF3/j4j5S+kamxpiyvHBePWPoK34veOTK4DILfacVMO1FRNISNphBR2nb8Rm8euyMjT2yhedFSOqppDfg==",
+    "Microsoft.SemanticKernel.Core/1.41.0": {
+      "sha512": "n4Sv2pQJxgdGuqb1CC98NpqkKVEHlC3D4g7QX8pSFQJLAkqQ2gwNxyTPj8C7BsIqVfNP7Uyrbui9i3MGdTF72A==",
       "type": "package",
-      "path": "microsoft.semantickernel.core/1.40.0",
+      "path": "microsoft.semantickernel.core/1.41.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1476,8 +1676,25 @@
         "lib/net8.0/Microsoft.SemanticKernel.Core.xml",
         "lib/netstandard2.0/Microsoft.SemanticKernel.Core.dll",
         "lib/netstandard2.0/Microsoft.SemanticKernel.Core.xml",
-        "microsoft.semantickernel.core.1.40.0.nupkg.sha512",
+        "microsoft.semantickernel.core.1.41.0.nupkg.sha512",
         "microsoft.semantickernel.core.nuspec"
+      ]
+    },
+    "Microsoft.SemanticKernel.PromptTemplates.Handlebars/1.40.0": {
+      "sha512": "yEOG0S3qsDQUruujR8NpjRdannp4ECTnp3GQ/BErs2Gx57ll6iBUaHHuRgEHEIoOsDKIIYpijTd6zyvL24RjAQ==",
+      "type": "package",
+      "path": "microsoft.semantickernel.prompttemplates.handlebars/1.40.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NUGET.md",
+        "icon.png",
+        "lib/net8.0/Microsoft.SemanticKernel.PromptTemplates.Handlebars.dll",
+        "lib/net8.0/Microsoft.SemanticKernel.PromptTemplates.Handlebars.xml",
+        "lib/netstandard2.0/Microsoft.SemanticKernel.PromptTemplates.Handlebars.dll",
+        "lib/netstandard2.0/Microsoft.SemanticKernel.PromptTemplates.Handlebars.xml",
+        "microsoft.semantickernel.prompttemplates.handlebars.1.40.0.nupkg.sha512",
+        "microsoft.semantickernel.prompttemplates.handlebars.nuspec"
       ]
     },
     "Neo4j.Driver/5.27.0": {
@@ -1496,6 +1713,23 @@
         "lib/netstandard2.0/Neo4j.Driver.xml",
         "neo4j.driver.5.27.0.nupkg.sha512",
         "neo4j.driver.nuspec"
+      ]
+    },
+    "Npgsql/9.0.3": {
+      "sha512": "tPvY61CxOAWxNsKLEBg+oR646X4Bc8UmyQ/tJszL/7mEmIXQnnBhVJZrZEEUv0Bstu0mEsHZD5At3EO8zQRAYw==",
+      "type": "package",
+      "path": "npgsql/9.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Npgsql.dll",
+        "lib/net6.0/Npgsql.xml",
+        "lib/net8.0/Npgsql.dll",
+        "lib/net8.0/Npgsql.xml",
+        "npgsql.9.0.3.nupkg.sha512",
+        "npgsql.nuspec",
+        "postgresql.png"
       ]
     },
     "OpenAI/2.2.0-beta.1": {
@@ -1587,6 +1821,27 @@
         "stackexchange.redis.nuspec"
       ]
     },
+    "Stef.Validation/0.1.1": {
+      "sha512": "Qecz9CHwt32dAU7MYWINU6QCRZ1B0/anPxzyEJGos9osyMhjrv6C+OZIl3Wl3kLtllu9cGaptTD6nOhW1rMlZw==",
+      "type": "package",
+      "path": "stef.validation/0.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/Stef.Validation.dll",
+        "lib/net35/Stef.Validation.dll",
+        "lib/net40/Stef.Validation.dll",
+        "lib/net5.0/Stef.Validation.dll",
+        "lib/net6.0/Stef.Validation.dll",
+        "lib/netcoreapp3.1/Stef.Validation.dll",
+        "lib/netstandard1.0/Stef.Validation.dll",
+        "lib/netstandard1.3/Stef.Validation.dll",
+        "lib/netstandard2.0/Stef.Validation.dll",
+        "lib/netstandard2.1/Stef.Validation.dll",
+        "stef.validation.0.1.1.nupkg.sha512",
+        "stef.validation.nuspec"
+      ]
+    },
     "System.ClientModel/1.2.1": {
       "sha512": "s9+M5El+DXdCRRLzxak8uGBKWT8H/eIssGpFtpaMKdJULrQbBDPH/zFbVyHX+NDczhS5EvjHFbBH9/L+0UhmcA==",
       "type": "package",
@@ -1667,6 +1922,7 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "AI-RPG.Domain >= 1.0.0",
+      "Microsoft.AspNetCore.Http.Abstractions >= 2.3.0",
       "Microsoft.Extensions.Caching.StackExchangeRedis >= 9.0.2",
       "Microsoft.Extensions.Configuration >= 9.0.2",
       "Microsoft.Extensions.Configuration.Binder >= 9.0.2",
@@ -1676,7 +1932,10 @@
       "Microsoft.Extensions.Options >= 9.0.2",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 9.0.2",
       "Microsoft.SemanticKernel >= 1.40.0",
+      "Microsoft.SemanticKernel.Connectors.OpenAI >= 1.41.0",
+      "Microsoft.SemanticKernel.PromptTemplates.Handlebars >= 1.40.0",
       "Neo4j.Driver >= 5.27.0",
+      "Npgsql >= 9.0.3",
       "OpenAI >= 2.2.0-beta.1",
       "Qdrant.Client >= 1.17.0",
       "StackExchange.Redis >= 2.8.24"
@@ -1689,11 +1948,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj",
       "projectName": "AI-RPG.Infrastructure",
-      "projectPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj",
+      "projectPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Infrastructure\\AI-RPG.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\29437\\.nuget\\packages\\",
-      "outputPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1714,8 +1973,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {
-              "projectPath": "C:\\c-sharp-projects\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj"
+            "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj": {
+              "projectPath": "C:\\Users\\29437\\Desktop\\ai-rpg\\src\\AI-RPG.Domain\\AI-RPG.Domain.csproj"
             }
           }
         }
@@ -1736,6 +1995,10 @@
       "net10.0": {
         "targetAlias": "net10.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": {
+            "target": "Package",
+            "version": "[2.3.0, )"
+          },
           "Microsoft.Extensions.Caching.StackExchangeRedis": {
             "target": "Package",
             "version": "[9.0.2, )"
@@ -1772,9 +2035,21 @@
             "target": "Package",
             "version": "[1.40.0, )"
           },
+          "Microsoft.SemanticKernel.Connectors.OpenAI": {
+            "target": "Package",
+            "version": "[1.41.0, )"
+          },
+          "Microsoft.SemanticKernel.PromptTemplates.Handlebars": {
+            "target": "Package",
+            "version": "[1.40.0, )"
+          },
           "Neo4j.Driver": {
             "target": "Package",
             "version": "[5.27.0, )"
+          },
+          "Npgsql": {
+            "target": "Package",
+            "version": "[9.0.3, )"
           },
           "OpenAI": {
             "target": "Package",

@@ -18,9 +18,7 @@ public static class DependencyInjection
         // 应用服务
         services.AddScoped<ISessionAppService, SessionAppService>();
         services.AddScoped<IDialogueAppService, DialogueAppService>();
-
-        // 领域服务实现
-        services.AddScoped<IDialogueService, AIDialogueService>();
+        services.AddScoped<IUserAppService, UserAppService>();
 
         return services;
     }

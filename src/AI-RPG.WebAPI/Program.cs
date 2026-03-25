@@ -1,28 +1,24 @@
-using AI_RPG.AICapabilities.Extensions;
 using AI_RPG.Application.Interfaces;
 using AI_RPG.Application.Services;
-using AI_RPG.Domain.Repositories;
-using AI_RPG.Domain.Services;
 using AI_RPG.Infrastructure.Extensions;
-using AI_RPG.Infrastructure.Repositories;
+using DotNetEnv;
+
+// 加载 .env 文件
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
+
+// 添加环境变量配置（优先级高于 appsettings.json）
+builder.Configuration.AddEnvironmentVariables();
 
 // Add services to the container.
 builder.Services.AddOpenApi();
 
-// 注册基础设施服务（内存仓储）
-builder.Services.AddInMemoryRepositories();
+// 注册基础设施服务（包括仓储）
+builder.Services.AddInfrastructure(builder.Configuration);
 
-// 注册AI能力层服务（Kimi LLM）
-builder.Services.AddKimiClient(builder.Configuration);
-
-// 注册应用服务
-builder.Services.AddScoped<ISessionAppService, SessionAppService>();
-builder.Services.AddScoped<IDialogueAppService, DialogueAppService>();
-
-// 注册领域服务
-builder.Services.AddScoped<IDialogueService, AIDialogueService>();
+// 注册用户应用服务
+builder.Services.AddScoped<IUserAppService, UserAppService>();
 
 // 注册控制器
 builder.Services.AddControllers();
@@ -39,6 +35,9 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// 自动初始化数据库（创建表结构）
+app.InitializeDatabase();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -58,7 +57,7 @@ app.UseHttpsRedirection();
 // 测试端点
 app.MapGet("/", () => "AI-RPG WebAPI is running!");
 app.MapGet("/test", () => "GET test works!");
-app.MapPost("/test", (HttpContext context) => 
+app.MapPost("/test", (HttpContext context) =>
 {
     Console.WriteLine("POST /test received!");
     return "POST test works!";
